@@ -1,6 +1,5 @@
 import re
 import string
-
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
