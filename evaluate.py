@@ -6,7 +6,7 @@ from model import preprocess_text, load_model_and_encoder
 model, label_encoder = load_model_and_encoder()
 
 # Load new data for evaluation
-file_path = 'data/new_phishingEmail.csv'
+file_path = 'Downloads\new_phishingData.csv'
 data = pd.read_csv(file_path)
 
 # Preprocess the text data (same preprocessing as training)
