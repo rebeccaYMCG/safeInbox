@@ -1,12 +1,13 @@
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import LabelEncoder
+import os  # Import os module for directory operations
 import re
 import string
 import joblib
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import LabelEncoder
 
 
 # Function to preprocess text
@@ -18,7 +19,7 @@ def preprocess_text(text):
 
 
 # Load the dataset
-file_path = 'data/phishingEmail.csv'
+file_path = 'Downloads\phishingExamples.csv'
 data = pd.read_csv(file_path)
 
 # Preprocess the text data
@@ -38,6 +39,10 @@ model = make_pipeline(TfidfVectorizer(), MultinomialNB())
 model.fit(X_train, y_train)
 
 # Save the trained model and label encoder
+model_dir = 'model'
+if not os.path.exists(model_dir):
+    os.makedirs(model_dir)
+
 joblib.dump(model, 'model/phishing_detector.pkl')
 joblib.dump(label_encoder, 'model/label_encoder.pkl')
 
